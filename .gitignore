@@ -3,6 +3,7 @@ npm-debug.log
 .DS_Store
 .vscode/
 .happypack
+.env
 
 # built files
 /dist
