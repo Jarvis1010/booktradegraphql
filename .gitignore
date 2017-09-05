@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.DS_Store
+.vscode/
+.happypack
+
+# built files
+/dist
+static/assets
+static/app.*
+server/modules/react-server-app

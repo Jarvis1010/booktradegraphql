@@ -1,0 +1,112 @@
+{
+    "name": "bookTrading",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "predev": "npm run build",
+        "dev": "npm-run-all -p dev:*",
+        "build": "npm-run-all -p build:*",
+        "start": "node dist/server.js",
+        "pretest": "webpack --config .tests/webpack.js",
+        "test": "tape dist/tests/test.js | tap-spec",
+        "lint": "eslint src",
+        "components": "start-storybook -p 9999",
+        "create:component": "componentinator",
+        "create:view": "componentinator type=view",
+        "create:container": "componentinator type=container",
+        "build:client": "better-npm-run build:client",
+        "build:server": "better-npm-run build:server",
+        "dev:client": "better-npm-run dev:client",
+        "dev:server": "better-npm-run dev:server"
+    },
+    "betterScripts": {
+        "dev:client": {
+            "command": "webpack-dev-server -d --quiet --no-info --hot --inline --history-api-fallback --config webpack.client.babel.js",
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },
+        "dev:server": {
+            "command": "node dist/server.js",
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },
+        "build:client": {
+            "command": "webpack --quiet --no-info --config webpack.client.babel.js",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        },
+        "build:server": {
+            "command": "webpack --quiet --no-info --config webpack.server.babel.js",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@kadira/storybook": "^2.35.3",
+        "autoprefixer": "^6.1.2",
+        "babel-cli": "^6.5.1",
+        "babel-core": "^6.2.1",
+        "babel-eslint": "^7.1.1",
+        "babel-loader": "^6.2.0",
+        "babel-plugin-react-require": "^3.0.0",
+        "babel-preset-latest": "^6.16.0",
+        "babel-preset-react": "^6.5.0",
+        "babel-preset-stage-2": "^6.5.0",
+        "css-loader": "^0.26.1",
+        "enzyme": "^2.0.0",
+        "eslint": "^3.14.1",
+        "eslint-config-react-app": "^0.5.0",
+        "eslint-plugin-flowtype": "^2.30.0",
+        "eslint-plugin-import": "^2.2.0",
+        "eslint-plugin-jsx-a11y": "^2.2.3",
+        "eslint-plugin-react": "^6.9.0",
+        "extract-text-webpack-plugin": "^1.0.1",
+        "file-loader": "^0.10.0",
+        "happypack": "^3.0.3",
+        "json-loader": "^0.5.4",
+        "normalize.css": "^5.0.0",
+        "postcss-cssnext": "^2.4.0",
+        "postcss-import": "^9.1.0",
+        "postcss-loader": "^1.2.2",
+        "react-addons-test-utils": "^15.0.1",
+        "react-component-inator": "^1.0.2",
+        "sinon": "^2.2.0",
+        "style-loader": "^0.13.0",
+        "tap-spec": "^4.1.1",
+        "tape": "^4.4.0",
+        "webpack": "^1.12.9",
+        "webpack-dev-server": "^1.14.0",
+        "webpack-node-externals": "^1.2.0"
+    },
+    "dependencies": {
+        "@tuxsudo/b64": "^1.0.1",
+        "better-npm-run": "0.0.14",
+        "body-parser": "^1.17.1",
+        "compression": "^1.6.1",
+        "cors": "^2.7.1",
+        "dotenv": "^4.0.0",
+        "express": "^4.13.4",
+        "helmet": "^3.4.0",
+        "html-minifier": "^3.3.0",
+        "is-in-browser": "^1.0.2",
+        "isomorphic-fetch": "^2.2.1",
+        "join-classnames": "^1.0.0",
+        "npm-run-all": "^4.0.1",
+        "react": "^15.0.1",
+        "react-dom": "^15.0.1",
+        "react-helmet": "^5.0.3",
+        "react-redux": "^5.0.2",
+        "react-router": "^3.0.2",
+        "react-router-redux": "^4.0.7",
+        "redux": "^3.4.0",
+        "redux-thunk": "^2.0.1",
+        "string-hash": "^1.1.0"
+    },
+    "templateVersion": "2.2.1"
+}
