@@ -1,4 +1,4 @@
-require('./api/data/db.js');
+require('../server/data/db');
 import 'dotenv/config';
 import 'isomorphic-fetch';
 import express from 'express';
@@ -7,6 +7,8 @@ import compression from 'compression';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { api } from './routes';
+import schema from './api/schema';
+import graphqlHTTP from 'express-graphql';
 
 // the reactified route-handler from the `app`
 import reactHandler from '../app/_server.js';
@@ -32,6 +34,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(`${APP_WEB_BASE_PATH}/api`, api);
+
+app.use(
+  '/graphql',
+  graphqlHTTP(req => ({
+    schema,
+    //,graphiql:true
+  }))
+);
 
 // handle routes via react...
 app.get('*', reactHandler);
