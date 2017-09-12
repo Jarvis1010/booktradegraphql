@@ -7,7 +7,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import { api } from './routes';
-import schema from './api/schema';
+import { schema } from './api/schema';
 import graphqlHTTP from 'express-graphql';
 
 // the reactified route-handler from the `app`
@@ -35,12 +35,14 @@ app.use(bodyParser.json());
 
 app.use(`${APP_WEB_BASE_PATH}/api`, api);
 
+const root = { hello: () => 'Hello world!' };
 app.use(
   '/graphql',
-  graphqlHTTP(req => ({
-    schema,
-    //,graphiql:true
-  }))
+  graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+  })
 );
 
 // handle routes via react...
