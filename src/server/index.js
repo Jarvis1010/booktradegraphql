@@ -19,11 +19,6 @@ export const app = express();
 const { APP_WEB_BASE_PATH } = process.env;
 
 // middleware
-app.use((req, res, next) => {
-  //custom logger
-  console.log(req.method, req.url);
-  next();
-});
 app.use(compression());
 app.use(helmet());
 app.use(
@@ -32,6 +27,12 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  //custom logger
+  //console.log(req.method, req.url, req.body);
+  next();
+});
 
 app.use(`${APP_WEB_BASE_PATH}/api`, api);
 
